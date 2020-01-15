@@ -8,7 +8,8 @@ bodyParser = express.json()
 const serializeBudget = (budget) => ({
     id: xss(budget.id),
     budget: xss(budget.budget),
-    userID: budget.userid
+    userID: budget.userid,
+    timeFrame: budget.timeframe
 })
 
 budgetRouter
@@ -23,8 +24,8 @@ budgetRouter
         .catch(next)
     })
     .post(bodyParser, (req, res, next) => {
-        const { id, budget, userid } = req.body
-        const newBudget = { id, budget, userid }
+        const { id, budget, userid, timeframe } = req.body
+        const newBudget = { id, budget, userid, timeframe }
 
         for(const [key, value] of Object.entries(newBudget)) {
             if(value == null) {
