@@ -21,6 +21,16 @@ const BudgetsService = {
             .where('userid', userID)
     },
 
+    updateBudget(knex, userID, budget, timeframe) {
+        return knex('budgets')
+            .where('userid', userID)
+            .update({
+                budget: budget,
+                timeframe: timeframe
+            })
+            
+    },
+
     deleteBudget(knex, id) {
         return knex('budgets')
             .where('id', id)

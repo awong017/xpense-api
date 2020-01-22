@@ -49,6 +49,21 @@ budgetRouter
     })
 
 budgetRouter
+    .route('/:user_id/:budget/:timeframe')
+    .put((req, res, next) => {
+        const { user_id, budget, timeframe } = req.params
+        const knexInstance = req.app.get('db')
+
+        BudgetsService.updateBudget(knexInstance, user_id, budget, timeframe)
+
+        .then(
+            res
+                .send('Budget updated')
+        )
+        .catch(next)
+    })
+
+budgetRouter
     .route('/:budget_id')
     .get((req, res, next) => {
         const { budget_id } = req.params
