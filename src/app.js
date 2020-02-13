@@ -23,19 +23,21 @@ app.use(express.json())
 
 app.use(function errorHandler(error, req, res, next) {
     let response
-        if (NODE_ENV === 'production') {
-         response = { error: { message: 'server error' } }
-       } else {
-         console.error(error)
-         response = { message: error.message, error }
-       }
-       res.status(500).json(response)
-     })
+      if (NODE_ENV === 'production') {
+        response = { error: { message: 'server error' } }
+      } 
+      else
+      {
+        response = { message: error.message, error }
+      }
+        res.status(500).json(response)
+    }
+  )
 
-  app.use('/api/users', userRouter)
-  app.use('/api/goals', goalRouter)
-  app.use('/api/expenses', expenseRouter)
-  app.use('/api/budgets', budgetRouter)
-  app.use('/api/categories', categoryRouter)
+app.use('/api/users', userRouter)
+app.use('/api/goals', goalRouter)
+app.use('/api/expenses', expenseRouter)
+app.use('/api/budgets', budgetRouter)
+app.use('/api/categories', categoryRouter)
 
 module.exports = app
