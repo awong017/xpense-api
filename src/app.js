@@ -12,8 +12,6 @@ const categoryRouter = require('./categories/category-router')
 
 const app = express()
 
-//TEST
-
 const morganOption = (NODE_ENV === 'production')
   ? 'tiny'
   : 'common';
